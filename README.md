@@ -1,6 +1,6 @@
 # Coder
 An online HTML/CSS/JavaScript code editor that saves as gist.
-Inspired by Codepen, JSFiddle, dabblet and MiniCodeEditor
+Inspired by [Codepen](http://codepen.io/), [JSFiddle](http://jsfiddle.net/), [dabblet](http://dabblet.com/) and [MiniCodeEditor](http://xem.github.io/miniCodeEditor/).
 
 ## To-Do
 - [x] Editor
