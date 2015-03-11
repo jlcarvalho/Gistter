@@ -1,0 +1,36 @@
+<div layout="vertical" layout-fill>
+
+  <header ng-include="'components/navbar/navbar.html'"></header>
+
+  <md-content>
+    <div class="techs" layout-align="space-around center">
+      <md-card ng-model="main.html" ng-change="main.change('html')" flex="30" ui-ace="{
+            useWrapMode : true,
+            showGutter: false,
+            theme:'twilight',
+            mode: 'html'
+          }"></md-card>
+      <md-card ng-model="main.css" ng-change="main.change('css')" flex="30" ui-ace="{
+            useWrapMode : true,
+            showGutter: false,
+            theme:'twilight',
+            mode: 'css'
+          }"></md-card>
+      <md-card ng-model="main.js" ng-change="main.change('js')" flex="30" ui-ace="{
+            useWrapMode : true,
+            showGutter: false,
+            theme:'twilight',
+            mode: 'javascript'
+          }"></md-card>
+    </div>
+
+    <iframe id="preview"></iframe>
+  </md-content>
+
+  <footer>
+    <md-toolbar layout="row" layout-align="center center">
+      <p>With ♥ from <a href="https://twitter.com/JLCarv">@JLCarv</a></p>
+    </md-toolbar>
+  </footer>
+
+</div>
