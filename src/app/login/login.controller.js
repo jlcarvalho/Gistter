@@ -6,7 +6,6 @@
 
 class LoginCtrl {
   constructor (Auth, $stateParams, $state) {
-
     Auth.getToken($stateParams.code)
       .then(function(data){
         $state.go('home');
