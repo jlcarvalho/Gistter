@@ -14,12 +14,12 @@ class MainCtrl {
     }
 
     // Clear textareas with button
-    //angular.element(".clearLink").click(function (){
-    //  this.html = "";
-    //  this.css = "";
-    //  this.js = "";
-    //  sessionStorage.clear();
-    //});
+    angular.element(".clearLink").click(function (){
+      this.html = "";
+      this.css = "";
+      this.js = "";
+      sessionStorage.clear();
+    });
   }
 
   checkStorage () {
@@ -42,5 +42,5 @@ class MainCtrl {
   }
 }
 
-///MainCtrl.$inject = [];
+//MainCtrl.$inject = [];
 export default MainCtrl;

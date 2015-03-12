@@ -5,7 +5,7 @@ Inspired by [Codepen](http://codepen.io/), [JSFiddle](http://jsfiddle.net/), [da
 ## To-Do
 - [x] Editor
 - [ ] Better layout
-- [ ] Login with GH
+- [x] Login with GH
 - [ ] Save as gist
 - [ ] Add [TogetherJS](https://togetherjs.com/)
 - [ ] Main page
@@ -28,3 +28,4 @@ Inspired by [Codepen](http://codepen.io/), [JSFiddle](http://jsfiddle.net/), [da
 - Babel
 - Ui-Router
 - Ui-Ace
+- Gatekeeper
