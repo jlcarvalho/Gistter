@@ -7,6 +7,7 @@ Inspired by [Codepen](http://codepen.io/), [JSFiddle](http://jsfiddle.net/), [da
 - [ ] Better layout
 - [x] Login with GH
 - [x] Save as gist
+- [ ] Update gist
 - [ ] Add [TogetherJS](https://togetherjs.com/)
 - [ ] Main page
 - [ ] User page

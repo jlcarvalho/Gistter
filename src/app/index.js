@@ -19,7 +19,7 @@ angular.module('coder', ['restangular', 'ui.router', 'ngMaterial', 'ui.ace'])
 
     $stateProvider
       .state('home', {
-        url: '/:gistId?',
+        url: '/editor:gistId?',
         templateUrl: 'app/main/main.html',
         controller: 'MainCtrl as main'
       })
@@ -29,6 +29,6 @@ angular.module('coder', ['restangular', 'ui.router', 'ngMaterial', 'ui.ace'])
         controller: 'LoginCtrl as login'
       });
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/editor');
   })
 ;
