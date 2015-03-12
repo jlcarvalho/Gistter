@@ -5,12 +5,12 @@ import Auth from '../components/auth/auth.service';
 import GH from '../components/github/github.service';
 import LoginCtrl from './login/login.controller';
 import MainCtrl from './main/main.controller';
-import NavbarCtrl from '../components/navbar/navbar.controller';
+import NavbarDirective from '../components/navbar/navbar.directive';
 
 angular.module('coder', ['restangular', 'ui.router', 'ngMaterial', 'ui.ace'])
   .controller('LoginCtrl', LoginCtrl)
   .controller('MainCtrl', MainCtrl)
-  .controller('NavbarCtrl', NavbarCtrl)
+  .directive('navbar', NavbarDirective.directiveFactory)
   .service('Auth', Auth)
   .service('GH', GH)
 
@@ -19,7 +19,7 @@ angular.module('coder', ['restangular', 'ui.router', 'ngMaterial', 'ui.ace'])
 
     $stateProvider
       .state('home', {
-        url: '/',
+        url: '/:gistId?',
         templateUrl: 'app/main/main.html',
         controller: 'MainCtrl as main'
       })

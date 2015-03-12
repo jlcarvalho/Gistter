@@ -1,6 +1,20 @@
 <div layout="vertical" layout-fill>
 
-  <header ng-include="'components/navbar/navbar.html'"></header>
+  <navbar>
+    <md-button ng-if="main.Auth.isLogged()" ng-click="main.save()" class="md-raised">
+        Save
+    </md-button>
+
+    <!-- fill up the space between left and right area -->
+    <span flex></span>
+
+    <a ng-if="!main.Auth.isLogged()" href="https://github.com/login/oauth/authorize?client_id=6e6377a2f4543ef05194&scope=user:email,user:follow,gist" class="btn-github">Log in with Github</a>
+
+    <div ng-if="main.Auth.isLogged()" layout="row" layout-align="end center">
+        <img ng-src="{{main.user.avatar_url}}" alt="{{main.user.name}}" class="face">
+        <span>{{main.user.name}}</span>
+    </div>
+  </navbar>
 
   <md-content>
     <div class="techs" layout-align="space-around center">

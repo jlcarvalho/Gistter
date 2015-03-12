@@ -6,14 +6,17 @@
 
 class LoginCtrl {
   constructor (Auth, $stateParams, $state) {
-    Auth.getToken($stateParams.code)
-      .then(function(data){
-        $state.go('home');
-      }, function(error){
-        if(error){
-          console.dir('Oops!')
-        }
-      });
+    if(!Auth.isLogged()) {
+      Auth.getToken($stateParams.code)
+        .then(function(data){
+          $state.go('home');
+        }, function(error){
+          if(error){
+            console.dir('Oops!')
+          }
+        });
+    }
+    
 
     //var github = new Github({
     //  token: "OAUTH_TOKEN",

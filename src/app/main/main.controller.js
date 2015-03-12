@@ -2,24 +2,69 @@
 /*jshint esnext: true */
 
 class MainCtrl {
-  constructor () {
+  constructor ($scope, $state, $stateParams, Auth, GH) {  
+    this.Auth = Auth;
+
+    if(Auth.isLogged()){       
+        GH.getUser().show(false, (err, user) => {
+            this.user = user;
+            $scope.$apply();
+        })
+    }
+
+    if(!!$stateParams.gistId){
+      var gist = GH.getGist($stateParams.gistId);
+
+      gist.read((err, gist) => {
+        this.html = !!gist.files['index.html'] ? gist.files['index.html'].content : '';
+        this.css = !!gist.files['main.css'] ? gist.files['main.css'].content : '';
+        this.js = !!gist.files['app.js'] ? gist.files['app.js'].content : '';
+
+        this.updateIframe();
+      });
+    }
+
     this.checkStorage();
     this.updateIframe();
 
     // Store contents of textarea in sessionStorage
-    this.change = function(type){
+    this.change = (type) => {
       sessionStorage[type] = this[type];
 
       this.updateIframe();
     }
 
-    // Clear textareas with button
-    angular.element(".clearLink").click(function (){
-      this.html = "";
-      this.css = "";
-      this.js = "";
-      sessionStorage.clear();
-    });
+    this.save = () => {
+      var files = {};
+
+      if(!!sessionStorage['html']) {
+        files['index.html'] = {
+            "content": sessionStorage['html']
+        }
+      }
+
+      if(!!sessionStorage['css']) {
+        files['main.css'] = {
+            "content": sessionStorage['css']
+        }
+      }
+
+      if(!!sessionStorage['js']) {
+        files['app.js'] = {
+            "content": sessionStorage['js']
+        }
+      }
+
+      GH.getGist().create({
+        "access_token": sessionStorage['token'],
+        "description": "Coder: the description for this gist",
+        "public": true,
+        "files": files
+      }, function(error, gist){
+        console.dir(gist);
+        $state.go('home', {gistId: gist.id})
+      })
+    }
   }
 
   checkStorage () {
@@ -42,5 +87,5 @@ class MainCtrl {
   }
 }
 
-//MainCtrl.$inject = [];
+MainCtrl.$inject = ['$scope', '$state', '$stateParams', 'Auth', 'GH'];
 export default MainCtrl;

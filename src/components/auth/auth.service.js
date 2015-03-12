@@ -12,20 +12,22 @@ class Auth {
 
   getToken (code) {
     var deferred = this.promise.defer();
-    if(angular.isDefined(sessionStorage['token'])){
-      deferred.resolve(true);
-    } else {
-      this.http.get('http://localhost:9999/authenticate/'+code)
-        .success(function (data) {
-          if(!data.hasOwnProperty('error')){
-            sessionStorage['token'] = data.token;
-            deferred.resolve(true);
-          } else {
-            deferred.reject(true);
-          }
-        })
-    }
+    this.http.get('http://localhost:9999/authenticate/'+code)
+      .success(function (data) {
+        if(!data.hasOwnProperty('error')){
+          sessionStorage['token'] = data.token;
+          deferred.resolve(true);
+        } else {
+          deferred.reject(true);
+        }
+      })
     return deferred.promise;
+  }
+
+  isLogged () {
+    if(angular.isDefined(sessionStorage['token'])){
+      return true;
+    }
   }
 }
 
