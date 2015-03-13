@@ -2,10 +2,10 @@
 /*jshint esnext: true */
 
 class MainCtrl {
-  constructor ($scope, $state, $stateParams, Auth, GH) {  
+  constructor ($scope, $state, $stateParams, Auth, GH) {
     this.Auth = Auth;
 
-    if(Auth.isLogged()){       
+    if(Auth.isLogged()){
         GH.getUser().show(false, (err, user) => {
             this.user = user;
             $scope.$apply();
@@ -55,28 +55,32 @@ class MainCtrl {
         }
       }
 
-      GH.getGist().create({
-        "access_token": sessionStorage['token'],
-        "description": "Coder: the description for this gist",
-        "public": true,
-        "files": files
-      }, function(error, gist){
-        console.dir(gist);
-        $state.go('home', {gistId: gist.id})
-      })
+      if($stateParams.gistId === ''){
+        GH.getGist().create({
+          "access_token": sessionStorage['token'],
+          "description": "Coder: the description for this gist",
+          "public": true,
+          "files": files
+        }, function(error, gist){
+          console.dir(gist);
+          $state.go('home', {gistId: gist.id})
+        })
+      } else {
+        GH.getGist($stateParams.gistId).update({
+          "access_token": sessionStorage['token'],
+          "description": "Coder: the description for this gist",
+          "files": files
+        }, function(error, gist){
+          console.dir(gist);
+        })
+      }
     }
   }
 
   checkStorage () {
-    if (sessionStorage["html"]) {
-      this.html = sessionStorage["html"];
-    }
-    if (sessionStorage["css"]) {
-      this.css = sessionStorage["css"];
-    }
-    if (sessionStorage["js"]) {
-      this.js = sessionStorage["js"];
-    }
+    this.html = !!sessionStorage["html"] ? sessionStorage["html"] : '';
+    this.css = !!sessionStorage["css"] ? sessionStorage["css"] : '';
+    this.js = !!sessionStorage["js"] ? sessionStorage["js"] : '';
   }
 
   updateIframe() {

@@ -25,21 +25,20 @@ md-toolbar
 .techs
   display flex
   flex-flow row wrap
-  md-card
-    img
-      &.pull-right
-        float right
-        width 50px
+  md-content
+    box-shadow 0px 0px 8px 0px rgba(0, 0, 0, 0.7)
 // injector
 // endinjector
 
 .ace_editor {
-  min-height: 200px;
+  min-height: calc(100vh / 2 - 34px);
+  margin:0;
 }
 
 #preview {
-  width 90%;
-  margin: 0 auto;
+  width 100%;
+  height: calc(100vh / 2 - 34px);
+  border: 0;
 }
 
 .btn-github {
@@ -73,3 +72,7 @@ md-toolbar
   + span {
     font-size: .75em;
   }}
+
+md-button + md-button{
+  margin-left: 10px;
+}

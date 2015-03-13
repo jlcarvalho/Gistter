@@ -4,10 +4,10 @@ Inspired by [Codepen](http://codepen.io/), [JSFiddle](http://jsfiddle.net/), [da
 
 ## To-Do
 - [x] Editor
-- [ ] Better layout
+- [x] Better layout
 - [x] Login with GH
 - [x] Save as gist
-- [ ] Update gist
+- [x] Update gist
 - [ ] Add [TogetherJS](https://togetherjs.com/)
 - [ ] Main page
 - [ ] User page

@@ -1,8 +1,11 @@
 <div layout="vertical" layout-fill>
 
   <navbar>
+    <md-button ng-href="editor" class="md-raised">
+      New
+    </md-button>
     <md-button ng-if="main.Auth.isLogged()" ng-click="main.save()" class="md-raised">
-        Save
+      Save
     </md-button>
 
     <!-- fill up the space between left and right area -->
@@ -18,33 +21,52 @@
 
   <md-content>
     <div class="techs" layout-align="space-around center">
-      <md-card ng-model="main.html" ng-change="main.change('html')" flex="30" ui-ace="{
+      <md-content flex="33">
+        <div ng-model="main.html" ng-change="main.change('html')" ui-ace="{
             useWrapMode : true,
             showGutter: false,
             theme:'twilight',
-            mode: 'html'
-          }"></md-card>
-      <md-card ng-model="main.css" ng-change="main.change('css')" flex="30" ui-ace="{
+            mode: 'ace/mode/html',
+            require: ['ace/ext/language_tools'],
+            advanced: {
+                enableSnippets: true,
+                enableBasicAutocompletion: true,
+                enableLiveAutocompletion: true
+            }
+          }"></div>
+          <md-button class="md-accent md-fab md-fab-top-right" ng-disabled="true">HTML</md-button>
+      </md-content>
+      <md-content flex="33">
+        <div ng-model="main.css" ng-change="main.change('css')" ui-ace="{
             useWrapMode : true,
             showGutter: false,
             theme:'twilight',
-            mode: 'css'
-          }"></md-card>
-      <md-card ng-model="main.js" ng-change="main.change('js')" flex="30" ui-ace="{
+            mode: 'ace/mode/css',
+            require: ['ace/ext/language_tools'],
+            advanced: {
+                enableSnippets: true,
+                enableBasicAutocompletion: true,
+                enableLiveAutocompletion: true
+            }
+          }"></div>
+        <md-button class="md-accent md-fab md-fab-top-right" ng-disabled="true">CSS</md-button>
+      </md-content>
+      <md-content flex="33"><div ng-model="main.js" ng-change="main.change('js')" ui-ace="{
             useWrapMode : true,
             showGutter: false,
             theme:'twilight',
-            mode: 'javascript'
-          }"></md-card>
+            mode: 'ace/mode/javascript',
+            require: ['ace/ext/language_tools'],
+            advanced: {
+                enableSnippets: true,
+                enableBasicAutocompletion: true,
+                enableLiveAutocompletion: true
+            }
+          }"></div>
+        <md-button class="md-accent md-fab md-fab-top-right" ng-disabled="true">JS</md-button>
+      </md-content>
     </div>
 
     <iframe id="preview"></iframe>
   </md-content>
-
-  <footer>
-    <md-toolbar layout="row" layout-align="center center">
-      <p>With ♥ from <a href="https://twitter.com/JLCarv">@JLCarv</a></p>
-    </md-toolbar>
-  </footer>
-
 </div>

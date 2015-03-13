@@ -8,7 +8,7 @@ class LoginCtrl {
   constructor (Auth, $stateParams, $state) {
     if(!Auth.isLogged()) {
       Auth.getToken($stateParams.code)
-        .then(function(data){
+        .then(function(){
           $state.go('home');
         }, function(error){
           if(error){
@@ -16,18 +16,6 @@ class LoginCtrl {
           }
         });
     }
-    
-
-    //var github = new Github({
-    //  token: "OAUTH_TOKEN",
-    //  auth: "oauth"
-    //});
-    //
-    //var user = github.getUser();
-    //
-    //user.gists(function(err, gists) {
-    //  console.dir(gists);
-    //});
   }
 }
 
