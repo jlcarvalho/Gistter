@@ -24,9 +24,8 @@
       <md-content flex="33">
         <div ng-model="main.html" ng-change="main.change('html')" ui-ace="{
             useWrapMode : true,
-            showGutter: false,
-            theme:'twilight',
-            mode: 'ace/mode/html',
+            theme:'monokai',
+            mode: 'html',
             require: ['ace/ext/language_tools'],
             advanced: {
                 enableSnippets: true,
@@ -39,9 +38,8 @@
       <md-content flex="33">
         <div ng-model="main.css" ng-change="main.change('css')" ui-ace="{
             useWrapMode : true,
-            showGutter: false,
-            theme:'twilight',
-            mode: 'ace/mode/css',
+            theme:'monokai',
+            mode: 'css',
             require: ['ace/ext/language_tools'],
             advanced: {
                 enableSnippets: true,
@@ -53,9 +51,8 @@
       </md-content>
       <md-content flex="33"><div ng-model="main.js" ng-change="main.change('js')" ui-ace="{
             useWrapMode : true,
-            showGutter: false,
-            theme:'twilight',
-            mode: 'ace/mode/javascript',
+            theme:'monokai',
+            mode: 'javascript',
             require: ['ace/ext/language_tools'],
             advanced: {
                 enableSnippets: true,

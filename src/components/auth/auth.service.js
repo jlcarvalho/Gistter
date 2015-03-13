@@ -12,7 +12,7 @@ class Auth {
 
   getToken (code) {
     var deferred = this.promise.defer();
-    this.http.get('http://localhost:9999/authenticate/'+code)
+    this.http.get('https://jlcarv-coder.herokuapp.com/authenticate/'+code)
       .success(function (data) {
         if(!data.hasOwnProperty('error')){
           sessionStorage['token'] = data.token;
