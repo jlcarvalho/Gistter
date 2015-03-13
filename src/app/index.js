@@ -6,11 +6,13 @@ import GH from '../components/github/github.service';
 import LoginCtrl from './login/login.controller';
 import MainCtrl from './main/main.controller';
 import NavbarDirective from '../components/navbar/navbar.directive';
+import HandleDirective from '../components/handle/handle.directive';
 
 angular.module('coder', ['restangular', 'ui.router', 'ngMaterial', 'ui.ace'])
   .controller('LoginCtrl', LoginCtrl)
   .controller('MainCtrl', MainCtrl)
   .directive('navbar', NavbarDirective.directiveFactory)
+  .directive('handle', HandleDirective.directiveFactory)
   .service('Auth', Auth)
   .service('GH', GH)
 
