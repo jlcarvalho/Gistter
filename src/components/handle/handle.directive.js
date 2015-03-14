@@ -13,18 +13,29 @@ class HandleDirective {
 
         $(element).on('mousedown', function(e){
             priorCursor = $('body').css('cursor');
-            $('body').css('cursor', 'row-resize');
+            $('body').css('cursor', 'col-resize');
 
             var node = $(this).addClass('draggable');
             var zindex = node.css('z-index');
 
+            var drg_w = node.outerWidth(),
+                pos_x = node.offset().left + drg_w - e.pageX;
+
             var handlers = {
                 mousemove : function(e){
                     var prev = node.prev();
+                    var next = node.next();
 
-                    prev.find('.ace_editor').css({
-                        height : (e.pageY - 112) + 'px'
-                    });
+                    node.css('z-index', 9999);
+
+                    var total = prev.outerWidth() + next.outerWidth();
+
+                    var leftPercentage = (((e.pageX - prev.offset().left) + (pos_x - drg_w / 2)) / total);
+                    var rightPercentage = 1 - leftPercentage;
+
+                    prev.css('flex', leftPercentage.toString());
+                    next.css('flex', rightPercentage.toString());
+
                 },
                 mouseup : function (){
                   $('body').css('cursor', priorCursor);

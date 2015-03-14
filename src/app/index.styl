@@ -23,8 +23,7 @@ md-toolbar
     background-color black
 
 .techs
-  display flex
-  flex-flow row wrap
+  flex:0.5;
   &.md-default-theme md-tab
     color: #999
   .md-header
@@ -34,15 +33,13 @@ md-toolbar
 // endinjector
 
 .ace_editor {
-  height: calc(100vh / 2 - 92px);
+  height: calc(100vh - 112px);
   margin:0;
 }
 
 #preview {
-  width 100%;
   border: 0;
-  flex:1;
-  display:flex;
+  flex:0.5;
 }
 
 .btn-github {
@@ -82,13 +79,13 @@ md-toolbar
 }
 
 .handle {
-    height: 16px;
-    border-bottom: 1px solid #202020;
+    height: calc(100vh - 64px);
+    width: 16px;
+    border-right: 1px solid #202020;
     background: #272727;
-    border-top: 1px solid #202020;
-    cursor: row-resize;
-    top: 0 !important;
-    position:relative;
+    border-left: 1px solid #202020;
+    cursor: col-resize;
+    transition: all ease-in 0.1s;
 }
 
 
@@ -97,7 +94,5 @@ md-toolbar
   background:black;
   width:100%;
   height:calc(100vh - 64px);
-
   display: flex;
-  flex-direction:column;
 }
