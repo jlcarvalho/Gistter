@@ -8,7 +8,6 @@ Inspired by [Codepen](http://codepen.io/), [JSFiddle](http://jsfiddle.net/), [da
 - [x] Login with GH
 - [x] Save as gist
 - [x] Update gist
-- [ ] Add [TogetherJS](https://togetherjs.com/)
 - [ ] Main page
 - [ ] User page
 - [ ] List gists
@@ -16,10 +15,6 @@ Inspired by [Codepen](http://codepen.io/), [JSFiddle](http://jsfiddle.net/), [da
 - [ ] Download gist
 - [ ] Favorite gist
 - [ ] Follow user
-- [ ] Jade and Haml support
-- [ ] SASS, SCSS and LESS support
-- [ ] CoffeeScript support
-- [ ] Multiple files
 
 ## Techs
 - AngularJS
