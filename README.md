@@ -11,10 +11,15 @@ Inspired by [Codepen](http://codepen.io/), [JSFiddle](http://jsfiddle.net/), [da
 - [ ] Add [TogetherJS](https://togetherjs.com/)
 - [ ] Main page
 - [ ] User page
+- [ ] List gists
 - [ ] Fork gist
 - [ ] Download gist
 - [ ] Favorite gist
 - [ ] Follow user
+- [ ] Jade and Haml support
+- [ ] SASS, SCSS and LESS support
+- [ ] CoffeeScript support
+- [ ] Multiple files
 
 ## Techs
 - AngularJS

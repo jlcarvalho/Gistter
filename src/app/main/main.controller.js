@@ -84,9 +84,21 @@ class MainCtrl {
   }
 
   updateIframe() {
-    (document.getElementById("preview").contentWindow.document).write(
-      this.html+"<style>"+this.css+"<\/style><script>"+this.js+"<\/script>"
-    );
+    var print = `
+      <!doctype html>
+        <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <title>Coder</title>
+            <style>${this.css}</style>
+          </head>
+          <body>
+            ${this.html}
+            <script>${this.js}</script>
+          </body>
+        </html>`;
+
+    (document.getElementById("preview").contentWindow.document).write(print);
     (document.getElementById("preview").contentWindow.document).close()
   }
 }
