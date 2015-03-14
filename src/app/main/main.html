@@ -19,8 +19,8 @@
     </div>
   </navbar>
 
-  <md-content ayout="column" style="min-height: 100%;">
-    <div class="techs" layout-align="space-around center" flex>
+  <md-content class="fb" style="min-height: calc(100vh - 64px);">
+    <div class="techs" layout-align="space-around center">
       <md-content flex="33">
         <div class="title">HTML</div>
         <div ng-model="main.html" ng-change="main.change('html')" ui-ace="{
@@ -64,7 +64,7 @@
           }"></div>
       </md-content>
     </div>
-    <handle flex></handle>
-    <iframe id="preview" flex></iframe>
+    <handle></handle>
+    <iframe id="preview"></iframe>
   </md-content>
 </div>

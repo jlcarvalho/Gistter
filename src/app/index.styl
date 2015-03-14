@@ -39,14 +39,15 @@ md-toolbar
 // endinjector
 
 .ace_editor {
-  height: calc(100vh / 2 - 89px);
+  height: calc(100vh / 2 - 92px);
   margin:0;
 }
 
 #preview {
   width 100%;
-  height: calc(100vh / 2 - 39px);
   border: 0;
+  flex:1;
+  display:flex;
 }
 
 .btn-github {
@@ -86,11 +87,22 @@ md-button + md-button{
 }
 
 .handle {
-    height: 10px;
+    height: 16px;
     border-bottom: 1px solid black;
     background: white;
     border-top: 1px solid black;
     cursor: row-resize;
     top: 0 !important;
     position:relative;
+}
+
+
+.fb{
+  position:absolute;
+  background:black;
+  width:100%;
+  height:calc(100vh - 64px);
+
+  display: flex;
+  flex-direction:column;
 }
