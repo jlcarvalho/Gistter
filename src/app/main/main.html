@@ -1,12 +1,21 @@
 <div layout="column" layout-fill>
 
   <navbar>
-    <md-button ng-href="editor" class="md-raised">
+    <md-button ng-click="main.newGist()" class="md-raised">
       New
     </md-button>
     <md-button ng-if="main.Auth.isLogged()" ng-click="main.save()" class="md-raised">
       Save
     </md-button>
+    <md-button ng-if="main.isForkeable()" ng-click="main.fork()" class="md-raised">
+      Fork
+    </md-button>
+    <md-button ng-click="main.info($event)" class="md-raised">
+      Info
+    </md-button>
+    <!--<md-button ng-click="main.share($event)" class="md-raised">
+      Share
+    </md-button>-->
 
     <!-- fill up the space between left and right area -->
     <span flex></span>
@@ -20,7 +29,7 @@
   </navbar>
 
   <md-content class="fb">
-    <md-tabs md-selected="0" class="md-primary techs" layout-align="space-around center">
+    <md-tabs md-selected="0" md-stretch-tabs="always" class="md-primary techs" layout-align="space-around center">
       <md-tab id="tab1" label="HTML">
         <div ng-model="main.html" ng-change="main.change('html')" ui-ace="{
             useWrapMode : true,

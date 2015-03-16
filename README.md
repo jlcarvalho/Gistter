@@ -11,10 +11,9 @@ Inspired by [Codepen](http://codepen.io/), [JSFiddle](http://jsfiddle.net/), [da
 - [ ] Main page
 - [ ] User page
 - [ ] List gists
-- [ ] Fork gist
+- [x] Fork gist
 - [ ] Download gist
 - [ ] Favorite gist
-- [ ] Follow user
 
 ## Techs
 - AngularJS

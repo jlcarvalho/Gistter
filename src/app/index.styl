@@ -21,6 +21,18 @@ html
 md-toolbar
   &.md-default-theme
     background-color black
+  .md-toolbar-tools > div
+    margin-left: 20px
+  .md-button.md-default-theme.md-raised {
+    color: rgba(255,255,255,0.87);
+    background-color: rgba(255,255,255,.15);
+
+    &:not([disabled]){
+      &:hover {
+        background-color: rgba(255,255,255,.25);
+      }
+    }
+  }
 
 .techs
   flex:0.5;
@@ -28,12 +40,16 @@ md-toolbar
     color: #999
   .md-header
     background-color: #202020 !important
-    border-bottom: 1px solid #ffff85
+    border-bottom: 1px solid rgb(255,64,129)
 // injector
 // endinjector
 
+navbar md-toolbar.md-default-theme {
+  border-bottom: 1px solid #202020;
+}
+
 .ace_editor {
-  height: calc(100vh - 112px);
+  height: calc(100vh - 113px);
   margin:0;
 }
 
@@ -66,7 +82,7 @@ md-toolbar
 
 .face {
   width: 48px;
-  margin: 0 16px;
+  margin: 0 16px 0 0;
   border-radius: 50%;
   border: 1px solid #ddd;
 
@@ -79,7 +95,7 @@ md-toolbar
 }
 
 .handle {
-    height: calc(100vh - 64px);
+    height: calc(100vh - 65px);
     width: 16px;
     border-right: 1px solid #202020;
     background: #272727;
@@ -93,6 +109,10 @@ md-toolbar
   position:absolute;
   background:black;
   width:100%;
-  height:calc(100vh - 64px);
+  height:calc(100vh - 65px);
   display: flex;
+}
+
+.md-dialog-container > md-dialog > md-content {
+  width: 500px;
 }
