@@ -12,12 +12,9 @@ class MainCtrl {
 
     this.desc = '';
 
-    if(Auth.isLogged()){
-        GH.getUser().show(false, (err, user) => {
-            this.user = user;
-            $scope.$apply();
-        })
-    }
+    Auth.getUser().then((user) => {
+      this.user = user;
+    })
 
     if(!!$stateParams.gistId){
       var gist = GH.getGist($stateParams.gistId);
@@ -30,6 +27,7 @@ class MainCtrl {
         this.css = !!gist.files['main.css'] ? gist.files['main.css'].content : '';
         this.js = !!gist.files['app.js'] ? gist.files['app.js'].content : '';
 
+        $scope.$apply();
         this.updateIframe();
       });
     }
@@ -121,6 +119,10 @@ class MainCtrl {
 
   isOwner() {
     return !!this.gist && !!this.$stateParams.gistId && (this.user.id === this.gist.owner.id);
+  }
+
+  isForkeable() {
+    return !!this.gist && !!this.$stateParams.gistId && (this.user.id !== this.gist.owner.id);
   }
 
   fork() {

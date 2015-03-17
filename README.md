@@ -10,8 +10,9 @@ Inspired by [Codepen](http://codepen.io/), [JSFiddle](http://jsfiddle.net/), [da
 - [x] Update gist
 - [ ] Main page
 - [x] User page
-- [ ] List gists
+- [x] List gists
 - [x] Fork gist
+- [ ] Delete gist
 - [ ] Download gist
 - [ ] Favorite gist
 

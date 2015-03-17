@@ -5,9 +5,11 @@
 /*jshint esnext: true */
 
 class Auth {
-  constructor ($http, $q) {
+  constructor ($http, $q, GH) {
     this.http = $http;
     this.promise = $q;
+    this.GH = GH;
+    this.user;
   }
 
   getToken (code) {
@@ -24,6 +26,25 @@ class Auth {
     return deferred.promise;
   }
 
+  getUser () {
+    var deferred = this.promise.defer();
+
+    if(this.isLogged()){
+      if(!angular.isDefined(this.user)){
+        this.GH.getUser().show(false, (err, user) => {
+          this.user = user;
+          deferred.resolve(this.user);
+        })
+      } else {
+        deferred.resolve(this.user);
+      }
+    } else {
+      deferred.reject(true);
+    }
+    
+    return deferred.promise;
+  }
+
   isLogged () {
     if(angular.isDefined(sessionStorage['token'])){
       return true;
@@ -31,6 +52,6 @@ class Auth {
   }
 }
 
-Auth.$inject = ['$http', '$q'];
+Auth.$inject = ['$http', '$q', 'GH'];
 
 export default Auth;

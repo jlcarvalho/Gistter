@@ -10,19 +10,31 @@
 
     <a ng-if="!profile.Auth.isLogged()" href="https://github.com/login/oauth/authorize?client_id=6e6377a2f4543ef05194&scope=user:email,user:follow,gist" class="btn-github">Log in with Github</a>
 
-    <a ng-if="profile.Auth.isLogged()" ng-href="/{{profile.current_user.login}}" layout="row" layout-align="end center">
+    <md-button ng-if="profile.Auth.isLogged()" ng-href="/{{profile.current_user.login}}/" layout="row" layout-align="end center">
       <img ng-src="{{profile.current_user.avatar_url}}" alt="{{profile.current_user.name}}" class="face">
       <span>{{profile.current_user.name}}</span>
-    </a>
+    </md-button>
   </navbar>
 
-  <md-content layout-padding>
-    <a ng-href="{{profile.user.html_url}}" layout="row" layout-align="space-around center" flex>
+  <md-content layout-padding layout="row" layout-align="center start">
+    <a ng-href="{{profile.user.html_url}}" layout="row" layout-align="space-around center" flex="50">
       <img ng-src="{{profile.user.avatar_url}}" alt="{{profile.user.name}}" class="face face-2x">
       <div flex>
         <h1>{{profile.user.name}}</h1>
         <span>{{profile.user.bio}}</span>
       </div>
     </a>
+    <md-whiteframe class="md-whiteframe-z2" layout layout-align="start center" flex="50">
+      <md-list flex>
+        <md-item ng-repeat="gist in profile.gists">
+          <md-item-content>
+            <md-button ng-href="/editor/{{gist.id}}" class="md-tile-content">
+              <h3>{{gist.description}}</h3>
+              <h4>last update in {{gist.updated_at | amDateFormat:'MMMM Do YYYY, h:mm a'}}</h4>
+            </md-button>
+          </md-item-content>
+        </md-item>
+      </md-list>
+    </md-whiteframe>
   </md-content>
 </div>

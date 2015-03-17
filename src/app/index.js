@@ -9,7 +9,7 @@ import ProfileCtrl from './profile/profile.controller';
 import NavbarDirective from '../components/navbar/navbar.directive';
 import HandleDirective from '../components/handle/handle.directive';
 
-angular.module('coder', ['restangular', 'ui.router', 'ngMaterial', 'ui.ace'])
+angular.module('coder', ['restangular', 'ui.router', 'ngMaterial', 'ui.ace', 'angularMoment'])
   .controller('LoginCtrl', LoginCtrl)
   .controller('MainCtrl', MainCtrl)
   .controller('ProfileCtrl', ProfileCtrl)
