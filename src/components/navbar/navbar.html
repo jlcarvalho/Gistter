@@ -1,6 +1,16 @@
 <md-toolbar>
   <div class="md-toolbar-tools">
     <md-button href="/">Coder</md-button>
-    <div layout="row" layout-align="space-between center" ng-transclude flex></div>
+    <div layout="row" layout-align="start center" flex>
+        <div ng-transclude></div>
+        <span flex></span>
+
+        <a ng-if="!navbar.Auth.isLogged()" href="https://github.com/login/oauth/authorize?client_id=6e6377a2f4543ef05194&scope=user:email,user:follow,gist" class="btn-github">Log in with Github</a>
+
+        <md-button ng-if="navbar.Auth.isLogged()" ng-href="/{{navbar.user.login}}/" layout="row" layout-align="end center">
+            <img ng-src="{{navbar.user.avatar_url}}" alt="{{navbar.user.name}}" class="face">
+            <span>{{navbar.user.name}}</span>
+        </md-button>
+    </div>
   </div>
 </md-toolbar>

@@ -19,13 +19,17 @@ class NavbarDirective {
     }
 
     controller () {
-        if(AUTH.get(NavbarDirective.instance).isLogged()){
-          TIMEOUT.get(NavbarDirective.instance)(() => {
-            GITHUB.get(NavbarDirective.instance).getUser().show(false, (err, user) => {
-                this.user = user;
-              })
-            }
-          )
+        this.Auth = AUTH.get(NavbarDirective.instance);
+        if(this.Auth.isLogged()){
+            this.Auth.getUser().then((user) => {
+              this.user = user;
+            });
+
+            TIMEOUT.get(NavbarDirective.instance)(() => {
+                GITHUB.get(NavbarDirective.instance).getUser().show(false, (err, user) => {
+                    this.user = user;
+                })
+            })
         }
     }
 

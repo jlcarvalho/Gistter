@@ -4,16 +4,6 @@
     <md-button ng-click="profile.newGist()" class="md-raised">
       New
     </md-button>
-
-    <!-- fill up the space between left and right area -->
-    <span flex></span>
-
-    <a ng-if="!profile.Auth.isLogged()" href="https://github.com/login/oauth/authorize?client_id=6e6377a2f4543ef05194&scope=user:email,user:follow,gist" class="btn-github">Log in with Github</a>
-
-    <md-button ng-if="profile.Auth.isLogged()" ng-href="/{{profile.current_user.login}}/" layout="row" layout-align="end center">
-      <img ng-src="{{profile.current_user.avatar_url}}" alt="{{profile.current_user.name}}" class="face">
-      <span>{{profile.current_user.name}}</span>
-    </md-button>
   </navbar>
 
   <md-content layout-padding layout="row" layout-align="center start">
