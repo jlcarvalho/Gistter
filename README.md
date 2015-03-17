@@ -9,7 +9,7 @@ Inspired by [Codepen](http://codepen.io/), [JSFiddle](http://jsfiddle.net/), [da
 - [x] Save as gist
 - [x] Update gist
 - [ ] Main page
-- [ ] User page
+- [x] User page
 - [ ] List gists
 - [x] Fork gist
 - [ ] Download gist

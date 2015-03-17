@@ -6,6 +6,15 @@
 html
   font-family 'Roboto Slab', serif
 
+a {
+  text-decoration: none;
+  color: #202020;
+
+  &:hover, &.md-button:hover {
+    color: rgb(255,64,129)
+  }
+}
+
 .browsehappy
   margin 0.2em 0
   background #ccc
@@ -84,11 +93,20 @@ navbar md-toolbar.md-default-theme {
   width: 48px;
   margin: 0 16px 0 0;
   border-radius: 50%;
-  border: 1px solid #ddd;
+  border: 2px solid #ddd;
+
+  a:hover & {
+    border-color: rgb(255,64,129)
+  }
+
+  &.face-2x {
+    width: 96px;
+  }
 
   + span {
     font-size: .75em;
-  }}
+  }
+}
 
 .md-button + .md-button{
   margin-left: 10px;

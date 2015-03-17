@@ -62,7 +62,7 @@ class MainCtrl {
     (document.getElementById("preview").contentWindow.document).write(print);
     (document.getElementById("preview").contentWindow.document).close()
   }// Store contents of textarea in sessionStorage
-  
+
   change (type) {
     sessionStorage[type] = this[type];
 
@@ -119,8 +119,8 @@ class MainCtrl {
     }
   }
 
-  isForkeable() {
-    return !!this.gist && !!this.$stateParams.gistId && !(this.user.id === this.gist.owner.id);
+  isOwner() {
+    return !!this.gist && !!this.$stateParams.gistId && (this.user.id === this.gist.owner.id);
   }
 
   fork() {
@@ -132,8 +132,9 @@ class MainCtrl {
 
   info(ev) {
     this.$mdDialog.show({
-      controller: function DialogController($scope, $mdDialog, GH, desc) {
+      controller: function DialogController($scope, $mdDialog, GH, desc, isOwner) {
         $scope.desc = desc.split('Coder: ')[1];
+        $scope.isOwner = isOwner;
         $scope.hide = function() {
           $mdDialog.hide();
         };
@@ -151,7 +152,7 @@ class MainCtrl {
           <form name="userForm">
               <md-input-container flex>
                 <label>Description</label>
-                <textarea ng-model="desc" columns="1" md-maxlength="500"></textarea>
+                <textarea ng-model="desc" columns="1" md-maxlength="500" ng-disabled="!isOwner"></textarea>
               </md-input-container>
             </md-content>
           </form>
@@ -159,14 +160,17 @@ class MainCtrl {
             <md-button ng-click="cancel()">
               Close
             </md-button>
-            <md-button ng-click="update(desc)" class="md-primary">
+            <md-button ng-click="update(desc)" class="md-primary" ng-if="isOwner">
               Save
             </md-button>
           </div>
         </md-dialog>
       `,
       targetEvent: ev,
-      locals: { desc: this.desc },
+      locals: {
+        desc: this.desc,
+        isOwner: this.isOwner()
+      },
     })
     .then((desc) => {
       this.desc = 'Coder: ' + desc;

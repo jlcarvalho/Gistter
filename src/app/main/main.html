@@ -7,7 +7,7 @@
     <md-button ng-if="main.Auth.isLogged()" ng-click="main.save()" class="md-raised">
       Save
     </md-button>
-    <md-button ng-if="main.isForkeable()" ng-click="main.fork()" class="md-raised">
+    <md-button ng-if="!main.isOwner()" ng-click="main.fork()" class="md-raised">
       Fork
     </md-button>
     <md-button ng-click="main.info($event)" class="md-raised">
@@ -22,10 +22,10 @@
 
     <a ng-if="!main.Auth.isLogged()" href="https://github.com/login/oauth/authorize?client_id=6e6377a2f4543ef05194&scope=user:email,user:follow,gist" class="btn-github">Log in with Github</a>
 
-    <div ng-if="main.Auth.isLogged()" layout="row" layout-align="end center">
+    <md-button  ng-if="main.Auth.isLogged()" ng-href="/{{main.user.login}}/" layout="row" layout-align="end center">
         <img ng-src="{{main.user.avatar_url}}" alt="{{main.user.name}}" class="face">
         <span>{{main.user.name}}</span>
-    </div>
+    </md-button>
   </navbar>
 
   <md-content class="fb">

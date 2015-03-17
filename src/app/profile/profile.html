@@ -1,0 +1,28 @@
+<div layout="column" layout-fill>
+
+  <navbar>
+    <md-button ng-click="profile.newGist()" class="md-raised">
+      New
+    </md-button>
+
+    <!-- fill up the space between left and right area -->
+    <span flex></span>
+
+    <a ng-if="!profile.Auth.isLogged()" href="https://github.com/login/oauth/authorize?client_id=6e6377a2f4543ef05194&scope=user:email,user:follow,gist" class="btn-github">Log in with Github</a>
+
+    <a ng-if="profile.Auth.isLogged()" ng-href="/{{profile.current_user.login}}" layout="row" layout-align="end center">
+      <img ng-src="{{profile.current_user.avatar_url}}" alt="{{profile.current_user.name}}" class="face">
+      <span>{{profile.current_user.name}}</span>
+    </a>
+  </navbar>
+
+  <md-content layout-padding>
+    <a ng-href="{{profile.user.html_url}}" layout="row" layout-align="space-around center" flex>
+      <img ng-src="{{profile.user.avatar_url}}" alt="{{profile.user.name}}" class="face face-2x">
+      <div flex>
+        <h1>{{profile.user.name}}</h1>
+        <span>{{profile.user.bio}}</span>
+      </div>
+    </a>
+  </md-content>
+</div>
