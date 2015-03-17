@@ -6,20 +6,23 @@ Inspired by [Codepen](http://codepen.io/), [JSFiddle](http://jsfiddle.net/), [da
 - [x] Editor
 - [x] Better layout
 - [x] Login with GH
-- [x] Save as gist
-- [x] Update gist
+- [x] Save gists
+- [x] Update gists
 - [ ] Main page
 - [x] User page
 - [x] List gists
 - [x] Fork gist
-- [ ] Delete gist
-- [ ] Download gist
-- [ ] Favorite gist
+- [ ] Delete gists
+- [ ] Download gists
+- [ ] Star gists
+- [ ] SEO Friendly
 
 ## Techs
-- AngularJS
-- BrowserSync
+- NPM
+- Bower
 - GulpJS
+- BrowserSync
+- AngularJS
 - Jasmine
 - Karma
 - Protractor
@@ -30,3 +33,5 @@ Inspired by [Codepen](http://codepen.io/), [JSFiddle](http://jsfiddle.net/), [da
 - Ui-Router
 - Ui-Ace
 - Gatekeeper
+- Moment
+- Prerenderer.io
