@@ -62,9 +62,26 @@ navbar md-toolbar.md-default-theme {
   margin:0;
 }
 
-#preview {
-  border: 0;
+.preview {
   flex:0.5;
+  position: relative;
+
+  iframe {
+    border: 0;
+    width: 100%;
+    height: calc(100vh - 65px);
+    display: block
+  }
+}
+
+.drag-cover {
+  position: absolute;
+  z-index: 201;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: none;
 }
 
 .btn-github {

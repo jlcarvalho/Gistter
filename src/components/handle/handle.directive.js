@@ -27,6 +27,7 @@ class HandleDirective {
                     var next = node.next();
 
                     node.css('z-index', 9999);
+                    $('.drag-cover').show();
 
                     var total = prev.outerWidth() + next.outerWidth();
 
@@ -39,6 +40,7 @@ class HandleDirective {
                 },
                 mouseup : function (){
                   $('body').css('cursor', priorCursor);
+                  $('.drag-cover').hide();
                   $('.draggable').removeClass('draggable').css('z-index', zindex);
                   $(this).off(handlers);
                 }

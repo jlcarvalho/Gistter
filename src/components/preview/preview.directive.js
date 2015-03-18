@@ -6,7 +6,7 @@
 
 class PreviewDirective {
   constructor () {
-    this.template = '<iframe ng-id="{{id}}"></iframe>';
+    this.template = '<div ng-id="{{id}}" class="preview"><iframe></iframe><div class="drag-cover"></div></div>';
     this.restrict = 'E';
     this.replace = true;
     this.scope = {
@@ -24,21 +24,12 @@ class PreviewDirective {
         sessionStorage.js = c.js || '';
 
         var print = `
-                    <!doctype html>
-                    <html lang="en">
-                      <head>
-                        <meta charset="UTF-8">
-                        <title>Coder</title>
-                        <style>${sessionStorage.css}</style>
-                      </head>
-                      <body>
-                        ${sessionStorage.html}
-                        <script>${sessionStorage.js}</script>
-                      </body>
-                    </html>`;
+                      <style>${sessionStorage.css}</style>
+                      ${sessionStorage.html}
+                      <script>${sessionStorage.js}</script>
+                     `;
 
-        (document.getElementById(scope.id).contentWindow.document).write(print);
-        (document.getElementById(scope.id).contentWindow.document).close()
+        angular.element(element).find('iframe').contents().find('body').html(print);
       }
     }, true)
   }
