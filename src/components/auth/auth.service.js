@@ -18,9 +18,9 @@ class Auth {
       .success(function (data) {
         if(!data.hasOwnProperty('error')){
           sessionStorage['token'] = data.token;
-          deferred.resolve(true);
+          deferred.resolve(data.token);
         } else {
-          deferred.reject(true);
+          deferred.reject(data.error);
         }
       })
     return deferred.promise;
@@ -41,7 +41,7 @@ class Auth {
     } else {
       deferred.reject(true);
     }
-    
+
     return deferred.promise;
   }
 
