@@ -11,6 +11,11 @@ class MainCtrl {
     this.GH = GH;
 
     this.desc = '';
+    this.content = {
+      html: sessionStorage.html || '',
+      css: sessionStorage.css || '',
+      js: sessionStorage.js || ''
+    }
 
     Auth.getUser().then((user) => {
       this.user = user;
@@ -23,48 +28,13 @@ class MainCtrl {
         this.gist = gist;
         this.desc = gist.description || '';
 
-        this.html = !!gist.files['index.html'] ? gist.files['index.html'].content : '';
-        this.css = !!gist.files['main.css'] ? gist.files['main.css'].content : '';
-        this.js = !!gist.files['app.js'] ? gist.files['app.js'].content : '';
+        this.content.html = !!gist.files['index.html'] ? gist.files['index.html'].content : '';
+        this.content.css = !!gist.files['main.css'] ? gist.files['main.css'].content : '';
+        this.content.js = !!gist.files['app.js'] ? gist.files['app.js'].content : '';
 
         $scope.$apply();
-        this.updateIframe();
       });
     }
-
-    this.checkStorage();
-    this.updateIframe();
-  }
-
-  checkStorage () {
-    this.html = !!sessionStorage["html"] ? sessionStorage["html"] : '';
-    this.css = !!sessionStorage["css"] ? sessionStorage["css"] : '';
-    this.js = !!sessionStorage["js"] ? sessionStorage["js"] : '';
-  }
-
-  updateIframe() {
-    var print = `
-      <!doctype html>
-        <html lang="en">
-          <head>
-            <meta charset="UTF-8">
-            <title>Coder</title>
-            <style>${this.css}</style>
-          </head>
-          <body>
-            ${this.html}
-            <script>${this.js}</script>
-          </body>
-        </html>`;
-
-    (document.getElementById("preview").contentWindow.document).write(print);
-    (document.getElementById("preview").contentWindow.document).close()
-  }// Store contents of textarea in sessionStorage
-
-  change (type) {
-    sessionStorage[type] = this[type];
-
-    this.updateIframe();
   }
 
   newGist() {

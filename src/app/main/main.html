@@ -21,46 +21,50 @@
   <md-content class="fb">
     <md-tabs md-selected="0" md-stretch-tabs="always" class="md-primary techs" layout-align="space-around center">
       <md-tab id="tab1" label="HTML">
-        <div ng-model="main.html" ng-change="main.change('html')" ui-ace="{
-            useWrapMode : true,
-            theme:'monokai',
-            mode: 'html',
-            require: ['ace/ext/language_tools'],
-            advanced: {
-                enableSnippets: true,
-                enableBasicAutocompletion: true,
-                enableLiveAutocompletion: true
-            }
-          }"></div>
+        <div ng-model="main.content.html"
+             ui-ace="{
+                useWrapMode : true,
+                theme:'monokai',
+                mode: 'html',
+                require: ['ace/ext/language_tools'],
+                advanced: {
+                    enableSnippets: true,
+                    enableBasicAutocompletion: true,
+                    enableLiveAutocompletion: true
+                }
+             }"></div>
       </md-tab>
       <md-tab id="tab2" label="CSS">
-        <div ng-model="main.css" ng-change="main.change('css')" ui-ace="{
-            useWrapMode : true,
-            theme:'monokai',
-            mode: 'css',
-            require: ['ace/ext/language_tools'],
-            advanced: {
-                enableSnippets: true,
-                enableBasicAutocompletion: true,
-                enableLiveAutocompletion: true
-            }
-          }"></div>
+        <div ng-model="main.content.css"
+             ui-ace="{
+              useWrapMode : true,
+              theme:'monokai',
+              mode: 'css',
+              require: ['ace/ext/language_tools'],
+              advanced: {
+                  enableSnippets: true,
+                  enableBasicAutocompletion: true,
+                  enableLiveAutocompletion: true
+              }
+            }"></div>
       </md-tab>
       <md-tab id="tab3" label="JS">
-        <div ng-model="main.js" ng-change="main.change('js')" ui-ace="{
-            useWrapMode : true,
-            theme:'monokai',
-            mode: 'javascript',
-            require: ['ace/ext/language_tools'],
-            advanced: {
-                enableSnippets: true,
-                enableBasicAutocompletion: true,
-                enableLiveAutocompletion: true
-            }
-          }"></div>
+        <div ng-model="main.content.js"
+             ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }"
+             ui-ace="{
+              useWrapMode : true,
+              theme:'monokai',
+              mode: 'javascript',
+              require: ['ace/ext/language_tools'],
+              advanced: {
+                  enableSnippets: true,
+                  enableBasicAutocompletion: true,
+                  enableLiveAutocompletion: true
+              }
+            }"></div>
       </md-tab>
     </md-tabs>
     <handle></handle>
-    <iframe id="preview"></iframe>
+    <preview id="preview" content="main.content"></preview>
   </md-content>
 </div>

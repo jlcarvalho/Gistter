@@ -8,6 +8,7 @@ import MainCtrl from './main/main.controller';
 import ProfileCtrl from './profile/profile.controller';
 import NavbarDirective from '../components/navbar/navbar.directive';
 import HandleDirective from '../components/handle/handle.directive';
+import PreviewDirective from '../components/preview/preview.directive';
 
 angular.module('coder', ['restangular', 'ui.router', 'ngMaterial', 'ui.ace', 'angularMoment'])
   .controller('LoginCtrl', LoginCtrl)
@@ -15,6 +16,7 @@ angular.module('coder', ['restangular', 'ui.router', 'ngMaterial', 'ui.ace', 'an
   .controller('ProfileCtrl', ProfileCtrl)
   .directive('navbar', NavbarDirective.directiveFactory)
   .directive('handle', HandleDirective.directiveFactory)
+  .directive('preview', PreviewDirective.directiveFactory)
   .service('Auth', Auth)
   .service('GH', GH)
 
