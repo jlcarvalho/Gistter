@@ -6,7 +6,7 @@
 
 class PreviewDirective {
   constructor () {
-    this.template = '<div ng-id="{{id}}" class="preview"><iframe id="{{id}}Iframe"></iframe><div class="drag-cover"></div></div>';
+    this.template = '<div ng-id="{{id}}" class="preview"><iframe id="{{id}}Iframe" allowfullscreen></iframe><div class="drag-cover"></div></div>';
     this.restrict = 'E';
     this.replace = true;
     this.scope = {
