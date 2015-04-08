@@ -14,9 +14,9 @@ class MainCtrl {
 
     $http.get('app/main/editorTemplate.html').success((data) => {
       this.content = {
-        html: sessionStorage.html || data,
-        css: sessionStorage.css || '',
-        js: sessionStorage.js || ''
+        html: data,
+        css: '',
+        js: ''
       }
     });
     
@@ -42,10 +42,6 @@ class MainCtrl {
   }
 
   newGist() {
-    sessionStorage['html'] = this.htmlTemplate;
-    sessionStorage['css'] = '';
-    sessionStorage['js'] = '';
-
     this.$state.go('home', {gistId: ''}, { reload: true })
   }
 
