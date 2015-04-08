@@ -2,13 +2,11 @@
 /*jshint esnext: true */
 
 const AUTH = new WeakMap();
-const GITHUB = new WeakMap();
 const TIMEOUT = new WeakMap();
 
 class NavbarDirective {
-    constructor ($timeout, Auth, GH) {
+    constructor ($timeout, Auth) {
         AUTH.set(this, Auth);
-        GITHUB.set(this, GH);
         TIMEOUT.set(this, $timeout);
 
         this.templateUrl = 'components/navbar/navbar.html';
@@ -21,24 +19,20 @@ class NavbarDirective {
     controller () {
         this.Auth = AUTH.get(NavbarDirective.instance);
         if(this.Auth.isLogged()){
-            this.Auth.getUser().then((user) => {
-              this.user = user;
-            });
-
             TIMEOUT.get(NavbarDirective.instance)(() => {
-                GITHUB.get(NavbarDirective.instance).getUser().show(false, (err, user) => {
-                    this.user = user;
-                })
+                this.Auth.getUser().then((user) => {
+                  this.user = user;
+                });
             })
         }
     }
 
-    static directiveFactory($timeout, Auth, GH) {
-        NavbarDirective.instance = new NavbarDirective($timeout, Auth, GH);
+    static directiveFactory($timeout, Auth) {
+        NavbarDirective.instance = new NavbarDirective($timeout, Auth);
         return NavbarDirective.instance;
     }
 }
 
-NavbarDirective.directiveFactory.$inject = ['$timeout', 'Auth', 'GH'];
+NavbarDirective.directiveFactory.$inject = ['$timeout', 'Auth'];
 
 export default NavbarDirective;

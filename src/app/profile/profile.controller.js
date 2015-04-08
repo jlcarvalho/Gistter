@@ -12,19 +12,19 @@ class ProfileCtrl
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.Auth = Auth;
-    this.GH = GH;
+    this.GH = GH.getInstance(sessionStorage['token']);
 
     Auth.getUser().then((user) => {
       this.current_user = user;
     })
 
     var username = $stateParams.user.substring(0, $stateParams.user.length-1);
-    GH.getUser().show(username, (err, user) => {
+    this.GH.getUser().show(username, (err, user) => {
       this.user = user;
       $scope.$apply();
     })
 
-    GH.getUser().userGists(username, (err, gists) => {
+    this.GH.getUser().userGists(username, (err, gists) => {
       this.gists = _.filter(gists, function(gist){
         var coder = gist.description.split('Coder: ')
         if(coder.length > 1){

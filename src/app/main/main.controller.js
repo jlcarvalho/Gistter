@@ -2,27 +2,31 @@
 /*jshint esnext: true */
 
 class MainCtrl {
-  constructor ($scope, $state, $stateParams, $mdDialog, Auth, GH) {
+  constructor ($scope, $state, $stateParams, $mdDialog, $http, Auth, GH) {
     this.$scope = $scope;
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.$mdDialog = $mdDialog;
     this.Auth = Auth;
-    this.GH = GH;
+    this.GH = GH.getInstance(sessionStorage['token']);
 
     this.desc = '';
-    this.content = {
-      html: sessionStorage.html || '',
-      css: sessionStorage.css || '',
-      js: sessionStorage.js || ''
-    }
+
+    $http.get('app/main/editorTemplate.html').success((data) => {
+      this.content = {
+        html: sessionStorage.html || data,
+        css: sessionStorage.css || '',
+        js: sessionStorage.js || ''
+      }
+    });
+    
 
     Auth.getUser().then((user) => {
       this.user = user;
     })
 
     if(!!$stateParams.gistId){
-      var gist = GH.getGist($stateParams.gistId);
+      var gist = this.GH.getGist($stateParams.gistId);
 
       gist.read((err, gist) => {
         this.gist = gist;
@@ -38,7 +42,7 @@ class MainCtrl {
   }
 
   newGist() {
-    sessionStorage['html'] = '';
+    sessionStorage['html'] = this.htmlTemplate;
     sessionStorage['css'] = '';
     sessionStorage['js'] = '';
 
@@ -48,21 +52,21 @@ class MainCtrl {
   save (){
     var files = {};
 
-    if(!!sessionStorage['html']) {
+    if(!!this.content.html) {
       files['index.html'] = {
-          "content": sessionStorage['html']
+          "content": this.content.html
       }
     }
 
-    if(!!sessionStorage['css']) {
+    if(!!this.content.css) {
       files['main.css'] = {
-          "content": sessionStorage['css']
+          "content": this.content.css
       }
     }
 
-    if(!!sessionStorage['js']) {
+    if(!!this.content.js) {
       files['app.js'] = {
-          "content": sessionStorage['js']
+          "content": this.content.js
       }
     }
 
@@ -153,5 +157,5 @@ class MainCtrl {
   }
 }
 
-MainCtrl.$inject = ['$scope', '$state', '$stateParams', '$mdDialog', 'Auth', 'GH'];
+MainCtrl.$inject = ['$scope', '$state', '$stateParams', '$mdDialog', '$http', 'Auth', 'GH'];
 export default MainCtrl;

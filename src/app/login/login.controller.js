@@ -8,7 +8,8 @@ class LoginCtrl {
   constructor (Auth, $stateParams, $state) {
     if(!Auth.isLogged()) {
       Auth.getToken($stateParams.code)
-        .then(function(){
+        .then(function(token){
+          sessionStorage['token'] = token;
           $state.go('home');
         }, function(error){
           if(error){

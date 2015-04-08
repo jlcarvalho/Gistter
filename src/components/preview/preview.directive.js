@@ -17,25 +17,14 @@ class PreviewDirective {
 
   link (scope, element) {
     scope.$watch('content', (c) => {
-      if(angular.isDefined(scope.id))
+      if(angular.isDefined(scope.id) && angular.isDefined(c))
       {
-        sessionStorage.html = c.html || '';
-        sessionStorage.css = c.css || '';
-        sessionStorage.js = c.js || '';
+        var html = c.html || '';
+        var css = c.css || '';
+        var js = c.js || '';
 
-        var print = `
-                      <!doctype html>
-                      <html lang="en">
-                        <head>
-                          <meta charset="UTF-8">
-                          <title>Coder</title>
-                          <style>${sessionStorage.css}</style>
-                        </head>
-                        <body>
-                          ${sessionStorage.html}
-                          <script>${sessionStorage.js}</script>
-                        </body>
-                      </html>`;
+        var print = html.replace('<link rel="stylesheet" type="text/css" href="main.css">', '<style>' + css + '</style>')
+                        .replace('<script type="text/javascript" src="app.js"></script>', '<script>' + js + '</script>');
 
         (document.getElementById(scope.id + 'Iframe').contentWindow.document).write(print);
         (document.getElementById(scope.id + 'Iframe').contentWindow.document).close()

@@ -5,19 +5,19 @@
 /*jshint esnext: true */
 
 class Auth {
-  constructor ($http, $q, GH) {
+  constructor ($http, $q, $timeout, GH) {
     this.http = $http;
     this.promise = $q;
-    this.GH = GH;
+    this.$timeout = $timeout;
     this.user;
+    this.GH = GH;
   }
 
   getToken (code) {
     var deferred = this.promise.defer();
     this.http.get('https://jlcarv-coder.herokuapp.com/authenticate/'+code)
-      .success(function (data) {
+      .success((data) => {
         if(!data.hasOwnProperty('error')){
-          sessionStorage['token'] = data.token;
           deferred.resolve(data.token);
         } else {
           deferred.reject(data.error);
@@ -31,10 +31,10 @@ class Auth {
 
     if(this.isLogged()){
       if(!angular.isDefined(this.user)){
-        this.GH.getUser().show(false, (err, user) => {
+        this.GH.getInstance(sessionStorage['token']).getUser().show(false, (err, user) => {
           this.user = user;
           deferred.resolve(this.user);
-        })
+        });        
       } else {
         deferred.resolve(this.user);
       }
@@ -52,6 +52,6 @@ class Auth {
   }
 }
 
-Auth.$inject = ['$http', '$q', 'GH'];
+Auth.$inject = ['$http', '$q', '$timeout', 'GH'];
 
 export default Auth;

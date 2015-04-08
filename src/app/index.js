@@ -18,7 +18,7 @@ angular.module('coder', ['restangular', 'ui.router', 'ngMaterial', 'ui.ace', 'an
   .directive('handle', HandleDirective.directiveFactory)
   .directive('preview', PreviewDirective.directiveFactory)
   .service('Auth', Auth)
-  .service('GH', GH)
+  .service('GH', GH.ghFactory)
 
   .config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
     $locationProvider.html5Mode(true);

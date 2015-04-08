@@ -5,12 +5,20 @@
 /*jshint esnext: true */
 
 class GH {
-  constructor () {
-    var github = new Github({
-      token: sessionStorage['token'],
-      auth: "oauth"
-    });
-    return github;
+  constructor () {}
+
+  getInstance (token) {
+    if(!!token){
+        var github = new Github({
+          token: token,
+          auth: "oauth"
+        });
+        return github;
+    } 
+  }
+
+  static ghFactory(){
+    return new GH();
   }
 }
 
