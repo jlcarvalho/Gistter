@@ -26,9 +26,9 @@ class ProfileCtrl
 
     this.GH.getUser().userGists(username, (err, gists) => {
       this.gists = _.filter(gists, function(gist){
-        var coder = gist.description.split('Coder: ')
-        if(coder.length > 1){
-          gist.description = coder[1];
+        var gistter = gist.description.split('Gistter: ')
+        if(gistter.length > 1){
+          gist.description = gistter[1];
           return gist;
         }
       });

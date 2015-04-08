@@ -69,7 +69,7 @@ class MainCtrl {
     if(this.$stateParams.gistId === ''){
       this.GH.getGist().create({
         "access_token": sessionStorage['token'],
-        "description": 'Coder: ' + this.desc,
+        "description": 'Gistter: ' + this.desc,
         "public": true,
         "files": files
       }, (error, gist) => {
@@ -105,7 +105,7 @@ class MainCtrl {
   info(ev) {
     this.$mdDialog.show({
       controller: function DialogController($scope, $mdDialog, GH, desc, isOwner) {
-        $scope.desc = desc.split('Coder: ')[1];
+        $scope.desc = desc.split('Gistter: ')[1];
         $scope.isOwner = isOwner;
         $scope.hide = function() {
           $mdDialog.hide();
@@ -145,7 +145,7 @@ class MainCtrl {
       },
     })
     .then((desc) => {
-      this.desc = 'Coder: ' + desc;
+      this.desc = 'Gistter: ' + desc;
       this.save();
     }, () => {
       console.dir('You cancelled the dialog.');

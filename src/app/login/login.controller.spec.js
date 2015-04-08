@@ -6,7 +6,7 @@
 describe('controllers', function(){
   var scope;
 
-  beforeEach(module('coder'));
+  beforeEach(module('gistter'));
 
   beforeEach(inject(function($rootScope) {
     scope = $rootScope.$new();
