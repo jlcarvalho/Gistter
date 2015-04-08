@@ -35,6 +35,17 @@ class ProfileCtrl
       $scope.$apply();
     });
   }
+
+  remove (id) {
+    if (window.confirm("Do you really want to delete this gist?")) { 
+      this.GH.getGist(id).delete((error, gist) => {
+        if(gist){
+          this.gists.splice(_.findIndex(this.gists, {'id': id}), 1);
+          this.$scope.$apply();
+        }
+      })
+    }
+  }
 }
 
 ProfileCtrl.$inject = ['$scope', '$state', '$stateParams', 'Auth', 'GH'];

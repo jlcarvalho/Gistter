@@ -73,7 +73,7 @@ class MainCtrl {
     if(this.$stateParams.gistId === ''){
       this.GH.getGist().create({
         "access_token": sessionStorage['token'],
-        "description": this.desc,
+        "description": 'Coder: ' + this.desc,
         "public": true,
         "files": files
       }, (error, gist) => {
