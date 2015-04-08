@@ -12,7 +12,7 @@ Inspired by [Codepen](http://codepen.io/), [JSFiddle](http://jsfiddle.net/), [da
 - [x] User page
 - [x] List gists
 - [x] Fork gist
-- [ ] Delete gists
+- [x] Delete gists
 - [ ] Download gists
 - [ ] Star gists
 - [ ] SEO Friendly
