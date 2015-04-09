@@ -69,7 +69,7 @@ class MainCtrl {
     if(this.$stateParams.gistId === ''){
       this.GH.getGist().create({
         "access_token": sessionStorage['token'],
-        "description": 'Gistter: ' + this.desc,
+        "description": this.desc || 'Gistter: ',
         "public": true,
         "files": files
       }, (error, gist) => {
@@ -87,12 +87,20 @@ class MainCtrl {
     }
   }
 
+  isNew() {
+    return !this.gist;
+  }
+
   isOwner() {
-    return !!this.gist && !!this.$stateParams.gistId && (this.user.id === this.gist.owner.id);
+    return !!this.gist && !!this.$stateParams.gistId && this.user && this.gist.owner && (this.user.id === this.gist.owner.id);
+  }
+
+  hasOwner() {
+    return !!this.gist && !!this.gist.owner;
   }
 
   isForkeable() {
-    return !!this.gist && !!this.$stateParams.gistId && (this.user.id !== this.gist.owner.id);
+    return !!this.gist && !!this.$stateParams.gistId && this.user && this.gist.owner && (this.user.id !== this.gist.owner.id);
   }
 
   fork() {
@@ -104,9 +112,12 @@ class MainCtrl {
 
   info(ev) {
     this.$mdDialog.show({
-      controller: function DialogController($scope, $mdDialog, GH, desc, isOwner) {
+      controller: function DialogController($scope, $mdDialog, GH, desc, isOwner, hasOwner, isNew) {
         $scope.desc = desc.split('Gistter: ')[1];
         $scope.isOwner = isOwner;
+        $scope.hasOwner = hasOwner;
+        $scope.isNew = isNew;
+
         $scope.hide = function() {
           $mdDialog.hide();
         };
@@ -116,6 +127,7 @@ class MainCtrl {
         $scope.update = function(desc) {
           $mdDialog.hide(desc);
         };
+
       },
       template:
       `
@@ -124,7 +136,7 @@ class MainCtrl {
           <form name="userForm">
               <md-input-container flex>
                 <label>Description</label>
-                <textarea ng-model="desc" columns="1" md-maxlength="500" ng-disabled="!isOwner"></textarea>
+                <textarea ng-model="desc" columns="1" md-maxlength="500" ng-disabled="hasOwner && !isOwner && !isNew"></textarea>
               </md-input-container>
             </md-content>
           </form>
@@ -132,7 +144,7 @@ class MainCtrl {
             <md-button ng-click="cancel()">
               Close
             </md-button>
-            <md-button ng-click="update(desc)" class="md-primary" ng-if="isOwner">
+            <md-button ng-click="update(desc)" class="md-primary" ng-if="!(hasOwner && !isOwner && !isNew)">
               Save
             </md-button>
           </div>
@@ -141,7 +153,9 @@ class MainCtrl {
       targetEvent: ev,
       locals: {
         desc: this.desc,
-        isOwner: this.isOwner()
+        isOwner: this.isOwner(),
+        hasOwner: this.hasOwner(),
+        isNew: this.isNew()
       },
     })
     .then((desc) => {

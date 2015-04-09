@@ -24,7 +24,7 @@
               <h3>{{gist.description}}</h3>
               <small>last update in {{gist.updated_at | amDateFormat:'MMMM Do YYYY, h:mm a'}}</small>
             </a>
-            <p>
+            <p ng-if="profile.isOwner(gist)">
               <md-button md-no-ink ng-click="profile.remove(gist.id)" class="md-warn">
                 Delete
               </md-button>

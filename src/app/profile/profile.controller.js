@@ -36,6 +36,10 @@ class ProfileCtrl
     });
   }
 
+  isOwner(gist) {
+    return this.user && (this.user.id === gist.owner.id);
+  }
+
   remove (id) {
     if (window.confirm("Do you really want to delete this gist?")) { 
       this.GH.getGist(id).delete((error, gist) => {

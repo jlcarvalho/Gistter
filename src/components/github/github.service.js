@@ -14,7 +14,9 @@ class GH {
           auth: "oauth"
         });
         return github;
-    } 
+    } else {
+      return new Github({});
+    }
   }
 
   static ghFactory(){
