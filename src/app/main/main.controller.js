@@ -12,13 +12,27 @@ class MainCtrl {
 
     this.desc = '';
 
-    $http.get('app/main/editorTemplate.html').success((data) => {
       this.content = {
-        html: data,
+        html: `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Gistter</title>
+
+    <!-- Necessary to insert the styles -->
+    <link rel="stylesheet" type="text/css" href="main.css">
+  </head>
+  <body>
+    <!-- Your code here -->
+
+
+    <!-- Necessary to insert the javascript -->
+    <script type="text/javascript" src="app.js"></script>
+  </body>
+</html>`,
         css: '',
         js: ''
       }
-    });
     
 
     Auth.getUser().then((user) => {
